@@ -28,12 +28,35 @@ const obj: GridObj[] = [
   { id: 9, selected: false, pattern: 0 }
 ]
 
+const winningCombinations = [
+  [0, 1, 2], [3, 4, 5], [6, 7, 8],
+  [0, 3, 6], [1, 4, 7], [2, 5, 8],
+  [0, 4, 8], [2, 4, 6]
+];
+
 export default function GameBoard() {
   const [choices, setChoices] = useState<GridObj[]>(obj)
   const [turns, setTurns] = useState<number>(1)
+  const [isFinished, setisFinished] = useState<boolean>(false)
+  const [isTie, SetIsTie] = useState<boolean>(false)
   const dispatch = useDispatch()
 
+  const checkWinningCondition = (choices: GridObj[]) => {
+    for (let combination of winningCombinations) {
+      const [a, b, c] = combination;
+      if (
+        choices[a].pattern !== 0 &&
+        choices[a].pattern === choices[b].pattern &&
+        choices[a].pattern === choices[c].pattern
+      ) {
+        return true;
+      }
+    }
+    return false;
+  };
+
   const handleGridClick = (id: number) => {
+
     if (choices.some(e => !e.selected)) {
       const updatedChoices = choices.map(choice =>
         choice.id === id && !choice.selected
@@ -54,8 +77,17 @@ export default function GameBoard() {
   }
 
   useEffect(() => {
-    dispatch(changeTurn(turns))
-  }, [turns, dispatch])
+    if (!isFinished) dispatch(changeTurn(turns))
+  }, [turns, dispatch, isFinished])
+
+  useEffect(() => {
+    if (!choices.some(e => !e.selected)) SetIsTie(true)
+    setisFinished(checkWinningCondition(choices))
+  }, [choices])
+
+  useEffect(() => {
+    console.log(isFinished);
+  }, [isFinished])
 
   return (
     <div className='board' >
@@ -65,6 +97,10 @@ export default function GameBoard() {
           {choice.pattern === 2 ? < CloseIcon className='cross-icon' /> : ''}
         </div>
       ))}
+
+
+      {isFinished ? <div>finished</div> : ''}
+      {isTie ? <div>tie</div> : ''}
     </div>
   );
 }
