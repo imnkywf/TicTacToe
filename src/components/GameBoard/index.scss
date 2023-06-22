@@ -1,0 +1,22 @@
+$grid-wnh: calc(95vw / 3.75);
+$grid-color: #03072a;
+
+.board {
+  margin: 20vw auto;
+  padding: 3vw;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  width: 85vw;
+  height: 85vw;
+  background-color: #652be2;
+  border-radius: 5vw;
+
+  .grid {
+    width: $grid-wnh;
+    height: $grid-wnh;
+    background-color: $grid-color;
+    border-radius: 4vw;
+  }
+}

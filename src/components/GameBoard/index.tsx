@@ -3,6 +3,16 @@ import './index.scss'
 
 export default function GameBoard() {
   return (
-    <div>GameBoard</div>
+    <div className='board'>
+      <div className="grid"></div>
+      <div className="grid"></div>
+      <div className="grid"></div>
+      <div className="grid"></div>
+      <div className="grid"></div>
+      <div className="grid"></div>
+      <div className="grid"></div>
+      <div className="grid"></div>
+      <div className="grid"></div>
+    </div>
   )
 }

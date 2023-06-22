@@ -9,7 +9,7 @@ function App() {
       <div className="container">
         <h1>Tic-Tac-Toe</h1>
 
-        <div className="Turns">
+        <div className="turns">
           <Turns />
         </div>
 
