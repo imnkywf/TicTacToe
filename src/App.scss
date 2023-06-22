@@ -1,0 +1,10 @@
+$page-bgc: #082263;
+.App {
+  text-align: center;
+
+  .container {
+    width: 100%;
+    height: 100vh;
+    background-color: $page-bgc;
+  }
+}
