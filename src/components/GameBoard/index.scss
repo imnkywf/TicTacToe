@@ -1,6 +1,12 @@
 $grid-wnh: calc(95vw / 3.75);
 $grid-color: #03072a;
 
+@mixin icon {
+  width: 100%;
+  height: 100%;
+  font-weight: 800;
+}
+
 .board {
   margin: 20vw auto;
   padding: 3vw;
@@ -14,9 +20,21 @@ $grid-color: #03072a;
   border-radius: 5vw;
 
   .grid {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: $grid-wnh;
     height: $grid-wnh;
     background-color: $grid-color;
     border-radius: 4vw;
+
+    .circle-icon {
+      color: yellow;
+      @include icon;
+    }
+    .cross-icon {
+      color: red;
+      @include icon;
+    }
   }
 }
