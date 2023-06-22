@@ -1,0 +1,40 @@
+$user-width: 26vw;
+$user-height: 26vw;
+$user-bgc: #03072a;
+$user-radius: 4vw;
+
+@mixin userStyle {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  width: $user-width;
+  height: $user-height;
+  background-color: $user-bgc;
+  box-sizing: border-box;
+  border-radius: $user-radius;
+}
+
+.turns_container {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin: auto;
+  width: 80vw;
+  height: 40vw;
+
+  .user1 {
+    @include userStyle;
+    border: 2px solid white;
+  }
+
+  .user2 {
+    @include userStyle;
+  }
+
+  span {
+    margin-top: 3vw;
+    font-size: 5vw;
+    color: white;
+  }
+}
