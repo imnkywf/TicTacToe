@@ -2,11 +2,11 @@ import React, { useEffect } from 'react'
 import './index.scss'
 
 // Redux
-import { useSelector } from 'react-redux/es/hooks/useSelector';
+import { useSelector } from 'react-redux/es/hooks/useSelector'
 
 // MUI Icons
-import TripOriginIcon from '@mui/icons-material/TripOrigin';
-import CloseIcon from '@mui/icons-material/Close';
+import TripOriginIcon from '@mui/icons-material/TripOrigin'
+import CloseIcon from '@mui/icons-material/Close'
 
 export default function Turns() {
   const turn = useSelector(state => state)

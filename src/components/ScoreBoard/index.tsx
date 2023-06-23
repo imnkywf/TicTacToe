@@ -1,5 +1,5 @@
-import React, { FC } from 'react';
-import './index.scss';
+import React, { FC } from 'react'
+import './index.scss'
 
 interface ScoreBoardProps {
   type: string;
@@ -21,4 +21,4 @@ const ScoreBoard: FC<ScoreBoardProps> = ({ type, restart }) => {
   )
 }
 
-export default ScoreBoard;
+export default ScoreBoard

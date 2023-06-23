@@ -1,18 +1,18 @@
-import React, { useState, useEffect } from 'react';
-import './index.scss';
+import React, { useState, useEffect } from 'react'
+import './index.scss'
 
-import { useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux'
 // action
 import { changeTurn } from '../Redux/action'
 
 // MUI icons
-import TripOriginIcon from '@mui/icons-material/TripOrigin';
-import CloseIcon from '@mui/icons-material/Close';
+import TripOriginIcon from '@mui/icons-material/TripOrigin'
+import CloseIcon from '@mui/icons-material/Close'
 
 // import initial data
 import { GridObj, obj, winningCombinations } from '../data'
 
-import ScoreBoard from '../ScoreBoard';
+import ScoreBoard from '../ScoreBoard'
 
 export default function GameBoard() {
   const [choices, setChoices] = useState<GridObj[]>(obj)
@@ -23,17 +23,17 @@ export default function GameBoard() {
 
   const checkWinningCondition = (choices: GridObj[]) => {
     for (let combination of winningCombinations) {
-      const [a, b, c] = combination;
+      const [a, b, c] = combination
       if (
         choices[a].pattern !== 0 &&
         choices[a].pattern === choices[b].pattern &&
         choices[a].pattern === choices[c].pattern
       ) {
-        return true;
+        return true
       }
     }
-    return false;
-  };
+    return false
+  }
 
   const handleGridClick = (id: number) => {
     if (!isFinished) {
@@ -80,5 +80,5 @@ export default function GameBoard() {
       {isFinished ? <ScoreBoard type={`User${turns === 1 ? 2 : 1} has won!`} restart={restart} /> : ''}
       {isTie ? <ScoreBoard type={'Tie'} restart={restart} /> : ''}
     </div>
-  );
+  )
 }
