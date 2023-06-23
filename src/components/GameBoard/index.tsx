@@ -36,25 +36,20 @@ export default function GameBoard() {
   };
 
   const handleGridClick = (id: number) => {
+    if (!isFinished) {
+      if (choices.some(e => !e.selected)) {
+        const updatedChoices = choices.map(choice =>
+          choice.id === id && !choice.selected
+            ? { ...choice, pattern: turns, selected: true }
+            : choice
+        )
 
-    if (choices.some(e => !e.selected)) {
-      const updatedChoices = choices.map(choice =>
-        choice.id === id && !choice.selected
-          ? { ...choice, pattern: turns, selected: true }
-          : choice
-      )
-
-      setChoices(updatedChoices)
-      setTurns((p: number) => {
-        if (p === 1) {
-          return 2
-        } else if (p === 2) {
-          return 1
-        }
-        return p
-      })
+        setChoices(updatedChoices)
+        setTurns((p: number) => (p === 1 ? 2 : 1))
+      }
     }
   }
+
 
   const restart = () => {
     setisFinished(false)
