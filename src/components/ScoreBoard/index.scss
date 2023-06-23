@@ -1,0 +1,33 @@
+$scoreBoard-bgc: #0f338d;
+
+.scoreBoard {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: column;
+  margin: auto;
+  position: absolute;
+  left: 2.5vw;
+  bottom: 50vw;
+  width: 95vw;
+  height: 60vw;
+  background-color: $scoreBoard-bgc;
+  box-sizing: border-box;
+  border: 2vw solid yellow;
+  border-radius: 5vw;
+
+  .title {
+    font-size: 5vw;
+  }
+
+  button {
+    width: 25vw;
+    height: 10vw;
+    background-color: rgb(9, 148, 199);
+    border: none;
+    border-radius: 5vw;
+    color: white;
+    font-size: 5vw;
+    font-weight: 700;
+  }
+}

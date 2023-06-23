@@ -9,36 +9,16 @@ import { changeTurn } from '../Redux/action'
 import TripOriginIcon from '@mui/icons-material/TripOrigin';
 import CloseIcon from '@mui/icons-material/Close';
 
+// import initial data
+import { GridObj, obj, winningCombinations } from '../data'
 
-interface GridObj {
-  id: number;
-  selected: boolean;
-  pattern: number;
-}
-
-const obj: GridObj[] = [
-  { id: 1, selected: false, pattern: 0 },
-  { id: 2, selected: false, pattern: 0 },
-  { id: 3, selected: false, pattern: 0 },
-  { id: 4, selected: false, pattern: 0 },
-  { id: 5, selected: false, pattern: 0 },
-  { id: 6, selected: false, pattern: 0 },
-  { id: 7, selected: false, pattern: 0 },
-  { id: 8, selected: false, pattern: 0 },
-  { id: 9, selected: false, pattern: 0 }
-]
-
-const winningCombinations = [
-  [0, 1, 2], [3, 4, 5], [6, 7, 8],
-  [0, 3, 6], [1, 4, 7], [2, 5, 8],
-  [0, 4, 8], [2, 4, 6]
-];
+import ScoreBoard from '../ScoreBoard';
 
 export default function GameBoard() {
   const [choices, setChoices] = useState<GridObj[]>(obj)
   const [turns, setTurns] = useState<number>(1)
   const [isFinished, setisFinished] = useState<boolean>(false)
-  const [isTie, SetIsTie] = useState<boolean>(false)
+  const [isTie, setIsTie] = useState<boolean>(false)
   const dispatch = useDispatch()
 
   const checkWinningCondition = (choices: GridObj[]) => {
@@ -76,18 +56,22 @@ export default function GameBoard() {
     }
   }
 
+  const restart = () => {
+    setisFinished(false)
+    setIsTie(false)
+    setChoices(obj)
+    setTurns(1)
+  }
+
   useEffect(() => {
     if (!isFinished) dispatch(changeTurn(turns))
   }, [turns, dispatch, isFinished])
 
   useEffect(() => {
-    if (!choices.some(e => !e.selected)) SetIsTie(true)
+    if (!choices.some(e => !e.selected)) setIsTie(true)
     setisFinished(checkWinningCondition(choices))
   }, [choices])
 
-  useEffect(() => {
-    console.log(isFinished);
-  }, [isFinished])
 
   return (
     <div className='board' >
@@ -98,9 +82,8 @@ export default function GameBoard() {
         </div>
       ))}
 
-
-      {isFinished ? <div>finished</div> : ''}
-      {isTie ? <div>tie</div> : ''}
+      {isFinished ? <ScoreBoard type={`User${turns === 1 ? 2 : 1} has won!`} restart={restart} /> : ''}
+      {isTie ? <ScoreBoard type={'Tie'} restart={restart} /> : ''}
     </div>
   );
 }
